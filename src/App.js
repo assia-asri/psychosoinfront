@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
+  let navigate = useNavigate();
+
   const [programs, setPrograms] = useState([])
 
   // ce hook s'execute une seule fois grace au tableau vide (deuxieme parametre)
@@ -15,6 +18,9 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={()=>navigate("/programmes/nouveau")}>
+        Ajouter un programme
+      </button>
       <div className='table'>
         <div className='table-row'>
           <div className='table-column'>
@@ -45,6 +51,14 @@ function App() {
               <div className='table-column'>{program.url}</div>
               <div className='table-column'>{program.price}</div>
               <div className='table-column'>{program.createdAt}</div>
+              <div className='table-column'>
+                <button>
+                  editer
+                </button>
+                <button>
+                  supprimer
+                </button>
+              </div>
             </div>
           })
         }
