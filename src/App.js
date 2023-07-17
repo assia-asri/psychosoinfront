@@ -1,31 +1,23 @@
+import logo from './logo.svg';
 import './App.css';
-//import de la librairie axios
-import axios from "axios";
-import {useEffect, useState} from "react";
 
 function App() {
-
-  //afficher la liste des trainings
-  const [listOfTrainings, setListOfTrainings] = useState([]);
-
-  //récupérer les données du backend : la liste des trainings
-  useEffect(()=>{
-    axios.get("http://localhost:3001/trainings").then((response) => {
-      setListOfTrainings(response.data);
-    });
-  },[]);
-
   return (
     <div className="App">
-      {listOfTrainings.map((value, key) => {
-        return <div className="training">
-          <div className="trainingPicture">
-            <img src={value.trainingPicture}/>
-            </div>
-          <div className="trainingName">{value.trainingName}</div>
-          <div className="trainingSlogan">{value.trainingSlogan}</div>
-          </div>
-      })}
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
