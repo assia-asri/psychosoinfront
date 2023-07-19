@@ -8,6 +8,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ProgramAdd from './pages/ProgramAdd';
+import ProgramUpdate from './pages/ProgramUpdate';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/programmes/nouveau",
     element: <ProgramAdd />,
+  },
+  {
+    path: "/programmes/:id",
+    element: <ProgramUpdate />,
   },
 ]);
 

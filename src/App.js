@@ -52,7 +52,11 @@ function App() {
               <div className='table-column'>{program.price}</div>
               <div className='table-column'>{program.createdAt}</div>
               <div className='table-column'>
-                <button>
+                <button
+                  onClick={()=>{
+                    navigate("/programmes/" + program.id)
+                  }}
+                >
                   editer
                 </button>
                 <button
