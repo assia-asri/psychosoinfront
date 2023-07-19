@@ -55,7 +55,21 @@ function App() {
                 <button>
                   editer
                 </button>
-                <button>
+                <button
+                  onClick={() => {
+                    // appel du backend route de suppression de program
+                    fetch('http://localhost:3001/programs/' + program.id, {
+                      method: "DELETE"
+                    }).then(()=>{
+                      // recuperation de la nouvelle liste des programmes sans celui qu'on a supprimer
+                      fetch('http://localhost:3001/programs').then((response) => {
+                        return response.json()
+                      }).then((data) => {
+                        setPrograms(data)
+                      })
+                    })
+                  }}
+                >
                   supprimer
                 </button>
               </div>
