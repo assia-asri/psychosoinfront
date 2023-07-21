@@ -9,11 +9,21 @@ import {
 } from "react-router-dom";
 import ProgramAdd from './pages/ProgramAdd';
 import ProgramUpdate from './pages/ProgramUpdate';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/authentification",
+    element: <Login />,
+  },
+  {
+    path: "/enregistrement",
+    element: <Register />,
   },
   {
     path: "/programmes/nouveau",
@@ -29,7 +39,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    
+
   </React.StrictMode>
 );
 
