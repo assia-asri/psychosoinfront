@@ -16,7 +16,9 @@ function ProgramUpdate() {
     // récuperer les données su programme depuis le back
     // puis, allimenter les etats
     useEffect(() => {
-        fetch('http://localhost:3001/programs/' + id).then((response) => {
+        fetch('http://localhost:3001/programs/' + id, {
+            credentials: "include"
+        }).then((response) => {
           return response.json()
         }).then((data) => {
           setName(data.name)
@@ -58,6 +60,7 @@ function ProgramUpdate() {
                         headers: {
                             "Content-Type": "application/json"
                         },
+                        credentials: "include",
                         body: JSON.stringify({
                             name,
                             slug,

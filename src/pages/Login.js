@@ -5,6 +5,7 @@ function Login() {
     let navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
     return (
         <div className="Login">
@@ -18,23 +19,37 @@ function Login() {
                 }} /><br></br>
 
                 <button onClick={(e) => {
+                    setError("")
+
                     fetch("http://localhost:3001/auth/login", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
+                        credentials: "include",
                         body: JSON.stringify({
                             email,
                             password
                         })
+                    }).then((response) => {
+                        return response.json()
                     }).then((data) => {
-                        navigate('/')
+                        if(data.role) {
+                            localStorage.setItem("role", data.role);
+                            navigate('/');
+                        }
+                        
+                        if(data.error) {
+                            setError(data.error)
+                        }
+
                         console.log(data);
                     }).catch((error) => {
                         console.log(error);
                     });
 
                 }}>Se connecter</button>
+                <h6>{error}</h6>
             </div>
         </div>
     );

@@ -9,7 +9,9 @@ function App() {
 
   // ce hook s'execute une seule fois grace au tableau vide (deuxieme parametre)
   useEffect(() => {
-    fetch('http://localhost:3001/programs').then((response) => {
+    fetch('http://localhost:3001/programs', {
+      credentials: "include"
+    }).then((response) => {
       return response.json()
     }).then((data) => {
       setPrograms(data)
@@ -18,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={()=>navigate("/programmes/nouveau")}>
+      <button onClick={() => navigate("/programmes/nouveau")}>
         Ajouter un programme
       </button>
       <div className='table'>
@@ -53,7 +55,7 @@ function App() {
               <div className='table-column'>{program.createdAt}</div>
               <div className='table-column'>
                 <button
-                  onClick={()=>{
+                  onClick={() => {
                     navigate("/programmes/" + program.id)
                   }}
                 >
@@ -64,7 +66,7 @@ function App() {
                     // appel du backend route de suppression de program
                     fetch('http://localhost:3001/programs/' + program.id, {
                       method: "DELETE"
-                    }).then(()=>{
+                    }).then(() => {
                       // recuperation de la nouvelle liste des programmes sans celui qu'on a supprimer
                       fetch('http://localhost:3001/programs').then((response) => {
                         return response.json()
