@@ -7,10 +7,12 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ProgramAdd from './pages/ProgramAdd';
-import ProgramUpdate from './pages/ProgramUpdate';
+import ProgramAdd from './pages/admin/ProgramAdd';
+import ProgramUpdate from './pages/admin/ProgramUpdate';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Programs from './pages/admin/Programs';
+import Users from './pages/admin/Users';
 
 const router = createBrowserRouter([
   {
@@ -26,12 +28,20 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: "/programmes/nouveau",
+    path: "/admin/programmes/nouveau",
     element: <ProgramAdd />,
   },
   {
-    path: "/programmes/:id",
+    path: "/admin/programmes/:id",
     element: <ProgramUpdate />,
+  },
+  {
+    path: "/admin/programmes",
+    element: <Programs />,
+  },
+  {
+    path: "/admin/users",
+    element: <Users />,
   },
 ]);
 

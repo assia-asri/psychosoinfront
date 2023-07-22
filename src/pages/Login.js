@@ -1,11 +1,21 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function Login() {
     let navigate = useNavigate();
+    const role = localStorage.getItem("role");
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+
+    if (role) {
+        return role === "admin" ? <Navigate
+            to='/admin/programmes'
+        /> : <Navigate
+            to='/accueil'
+        />
+    }
 
     return (
         <div className="Login">
@@ -34,12 +44,12 @@ function Login() {
                     }).then((response) => {
                         return response.json()
                     }).then((data) => {
-                        if(data.role) {
+                        if (data.role) {
                             localStorage.setItem("role", data.role);
                             navigate('/');
                         }
-                        
-                        if(data.error) {
+
+                        if (data.error) {
                             setError(data.error)
                         }
 

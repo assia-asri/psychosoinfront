@@ -1,13 +1,22 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function Register() {
+    const role = localStorage.getItem("role");
     let navigate = useNavigate();
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [error, setError] = useState('')
+
+    if (role) {
+        return role === "admin" ? <Navigate
+            to='/admin/programmes'
+        /> : <Navigate
+            to='/accueil'
+        />
+    }
 
     return (
         <div className="Register">
